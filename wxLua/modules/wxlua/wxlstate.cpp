@@ -19,6 +19,10 @@
     #include <wx/wx.h>
 #endif
 
+#ifndef LUA_QL
+    #define LUA_QL(x)	"'" x "'"
+#endif
+
 #include "wxlua/wxlstate.h"
 #include "wxlua/wxlcallb.h"
 #include <wx/tokenzr.h>
