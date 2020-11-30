@@ -36,8 +36,10 @@ extern "C"
     // provided by bit.c (Lua BitOp)
     int luaopen_bit(lua_State *L);
 
+#ifdef LUA_BITLIBNAME
     // provided by lbitlib.c for 5.1 or we use the one in 5.2 or LuaJIT.
     int luaopen_bit32 (lua_State *L);
+#endif
 }
 
 // ----------------------------------------------------------------------------
@@ -714,9 +716,11 @@ bool wxLuaState::Create(lua_State* L, int state_type)
             lua_pushstring(L, "bit");
             lua_call(L, 1, 0);
 
+#ifdef LUA_BITLIBNAME
             lua_pushcfunction(L, luaopen_bit32);
             lua_pushstring(L, "bit32");
             lua_call(L, 1, 0);
+#endif
 
             RegisterBindings();
         }
